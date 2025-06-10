@@ -9,8 +9,8 @@ Future<void> main(List<String> arguments) async {
     var dom = parse(data.body);
     var result = dom.querySelectorAll(".single-thumb");
     for (var i in result) {
-      var image = i.querySelector("img");
-      print(image?.attributes["src"]);
+      var image = i.getElementsByTagName("img");
+      print(image[0]);
     }
   } else {
     print('Failed to load data, status code: ${data.statusCode}');
