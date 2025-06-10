@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,7 +12,12 @@ Future<void> main(List<String> arguments) async {
     var result = dom.querySelectorAll(".single-thumb");
     for (var i in result) {
       var image = i.getElementsByTagName("img");
-      print(image[0]);
+      String? imageSrc = image[0].attributes["data-src"];
+      if (imageSrc != null) {
+        var respone = await http.get(Uri.parse(imageSrc));
+        final file = File("./download/${image.indexOf(i)}.jpg");
+        await file.writeAsBytes(respone.bodyBytes);
+      }
     }
   } else {
     print('Failed to load data, status code: ${data.statusCode}');
