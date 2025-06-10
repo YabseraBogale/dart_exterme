@@ -15,8 +15,9 @@ Future<void> main(List<String> arguments) async {
       String? imageSrc = image[0].attributes["data-src"];
       if (imageSrc != null) {
         var respone = await http.get(Uri.parse(imageSrc));
-        final file = File("./download/${image.indexOf(i)}.jpg");
+        final file = File("./download/${result.indexOf(i)}.jpg");
         await file.writeAsBytes(respone.bodyBytes);
+        print("downloaded file: ./download/${result.indexOf(i)}.jpg");
       }
     }
   } else {
