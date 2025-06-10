@@ -7,8 +7,11 @@ Future<void> main(List<String> arguments) async {
   var data = await http.get(uri);
   if (data.statusCode == 200) {
     var dom = parse(data.body);
-    var result = dom.querySelectorAll("lazy small-bg-load entered loaded");
-    print(result.length);
+    var result = dom.querySelectorAll(".single-thumb");
+    for (var i in result) {
+      var image = i.querySelector("img");
+      print(image?.attributes["src"]);
+    }
   } else {
     print('Failed to load data, status code: ${data.statusCode}');
   }
