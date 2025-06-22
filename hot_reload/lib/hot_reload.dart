@@ -8,7 +8,9 @@ Future<void> server() async {
       if (request.uri.path == "/") {
         try {
           var status = await Process.run("git", ["status"]);
-          print(status.stdout);
+          var result = status.stdout.toString().split("\n")[3];
+          if (result == "Changes not staged for commit:") {
+          } else if (result == "nothing to commit, working tree clean") {}
         } catch (e) {
           print(e);
         }
