@@ -5,5 +5,7 @@ void main(List<String> arguments) async {
   var test = status.stdout.toString().split("\n")[3];
   if (test == "Changes not staged for commit:") {
     print("ok");
-  } else if (test == "") {}
+  } else if (test == "nothing to commit, working tree clean") {
+    print("not ok");
+  }
 }
