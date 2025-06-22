@@ -1,6 +1,6 @@
 import 'dart:io';
 
-dynamic Reload() async {
+Future<String> Reload() async {
   var status = await Process.run("git", ["status"]);
-  return status.stdout();
+  return status.stdout().toString();
 }
