@@ -6,7 +6,10 @@ Future<void> main(List<String> arguments) async {
     WebSocket socket;
     await for (HttpRequest request in server) {
       var path = request.uri.path;
-      if (path == "" && path == "/index.html") {}
+      var index = File("index.html");
+      if (path == "" && path == "/index.html") {
+        index.openRead().pipe(request.response);
+      }
     }
   } catch (e) {
     print(e);
