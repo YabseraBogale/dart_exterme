@@ -6,8 +6,10 @@ Future<void> main(List<String> arguments) async {
     await for (HttpRequest request in server) {
       var path = request.uri.path;
       var index = File("index.html");
-      if (path == "" && path == "/index.html") {
+      if (path == "" || path == "/index.html") {
         index.openRead().pipe(request.response);
+      } else {
+        break;
       }
     }
   } catch (e) {
