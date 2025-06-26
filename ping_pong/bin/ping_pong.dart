@@ -7,6 +7,9 @@ Future<void> main(List<String> arguments) async {
       var path = request.uri.path;
       var index = File("index.html");
       if (path == "" || path == "/index.html") {
+        request.response.headers.contentType = ContentType.parse(
+          "text/html; charset=utf-8",
+        );
         index.openRead().pipe(request.response);
       } else {
         break;
