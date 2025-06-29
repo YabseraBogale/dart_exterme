@@ -8,6 +8,7 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
+  b_encode_decode: ^1.0.4
   # path: ^1.8.0
 
 dev_dependencies:
