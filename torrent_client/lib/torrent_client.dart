@@ -51,7 +51,7 @@ class BencodeTorrent {
   }
 }
 
-void open(Uint8List byteStream) {
+BencodeTorrent open(Uint8List byteStream) {
   BencodeTorrent bto = BencodeTorrent();
   var ben = bencode.decode(byteStream);
   Map<String, dynamic> info = ben["info"];
@@ -63,5 +63,5 @@ void open(Uint8List byteStream) {
   bto.info.pieces = info["pieces"];
   bto.info.private = info["private"];
   bto.info.source = info["source"];
-  print(bto);
+  return bto;
 }
