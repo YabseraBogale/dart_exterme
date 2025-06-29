@@ -19,7 +19,14 @@ import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
   }
 
 */
-class BencodeInfo {}
+class BencodeInfo {
+  List<dynamic> files = [];
+  Uint8List? name;
+  int pieceLength = 0;
+  Uint8List? pieces;
+  int private = 0;
+  Uint8List? source;
+}
 
 /* BencodeTorrent  {
     announce-list List<dynamic>[
@@ -31,13 +38,22 @@ class BencodeInfo {}
   }
 */
 
-class BencodeTorrent {}
+class BencodeTorrent {
+  List<dynamic> announceList = [];
+  BencodeInfo info = BencodeInfo();
+}
 
 void open(Uint8List byteStream) {
-  var ben = bencode.decode(byteStream)["announce-list"];
-  for (var i in ben) {
-    for (var k in i) {
-      print(k.runtimeType);
-    }
-  }
+  BencodeTorrent bto = BencodeTorrent();
+  var ben = bencode.decode(byteStream);
+  Map<String, dynamic> info = ben["info"];
+
+  bto.announceList = ben["announce-list"];
+  bto.info.files = info["files"];
+  bto.info.name = info["name"];
+  bto.info.pieceLength = info["piece length"];
+  bto.info.pieces = info["pieces"];
+  bto.info.private = info["private"];
+  bto.info.source = info["source"];
+  print(bto);
 }
