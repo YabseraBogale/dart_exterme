@@ -2,19 +2,31 @@ import 'dart:typed_data';
 
 import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
 
-class BencodeInfo {
-  String pieces = "";
-  String name = "";
-  int piecesLength = 0;
-  int length = 0;
-}
+/*
+  BencodeInfo {
+    files List<dynamic>{
+      Map<String, dynamic>{
+        length int,
+        md5sum Uint8List,
+        path List<dynamic>
+      }
+    },
+    name Uint8List,
+    piece length int,
+    pieces Uint8List,
+    private int,
+    source Uint8List,
+  }
 
-class BencodeTorrent {
-  String announce = "";
-  BencodeInfo info = BencodeInfo();
-}
+*/
+class BencodeInfo {}
 
-void open(Uint8List byteStream) {
-  var ben = bencode.decode(byteStream);
-  print(ben);
-}
+/* BencodeTorrent  {
+    announce-list List<dynamic>
+    BencodeInfo info
+  }
+*/
+
+class BencodeTorrent {}
+
+void open(Uint8List byteStream) {}
