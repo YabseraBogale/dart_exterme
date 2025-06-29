@@ -26,6 +26,10 @@ class BencodeInfo {
   Uint8List? pieces;
   int private = 0;
   Uint8List? source;
+  @override
+  String toString() {
+    return "BencodeInfo(files: $files, name: $name,pieceLength: $pieceLength,pieces: $pieces, private: $private, source: $source)";
+  }
 }
 
 /* BencodeTorrent  {
@@ -41,6 +45,10 @@ class BencodeInfo {
 class BencodeTorrent {
   List<dynamic> announceList = [];
   BencodeInfo info = BencodeInfo();
+  @override
+  String toString() {
+    return "BencodeTorrent(announceList: $announceList, info: $info)";
+  }
 }
 
 void open(Uint8List byteStream) {
