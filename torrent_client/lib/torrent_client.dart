@@ -51,6 +51,26 @@ class BencodeTorrent {
   }
 }
 
+/*
+  TorrentFile {
+    Announce    string
+    InfoHash    Uint8List
+    PieceHashes List<dynamic>
+    PieceLength int
+    Length      int
+    Name        string
+  }
+
+*/
+class TorrentFile {
+  String announce = "";
+  Uint8List infoHash = Uint8List(20);
+  List<dynamic> pieceHashes = [];
+  int pieceLength = 0;
+  int length = 0;
+  String name = "";
+}
+
 BencodeTorrent open(Uint8List byteStream) {
   BencodeTorrent bto = BencodeTorrent();
   var ben = bencode.decode(byteStream);
