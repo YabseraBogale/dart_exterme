@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
-
+import 'package:crypto/crypto.dart';
 /*
   BencodeInfo {
     files List<dynamic>[
@@ -19,6 +19,7 @@ import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
   }
 
 */
+
 class BencodeInfo {
   List<dynamic> files = [];
   Uint8List? name;
@@ -26,6 +27,13 @@ class BencodeInfo {
   Uint8List? pieces;
   int private = 0;
   Uint8List? source;
+
+  Digest hash() {
+    Uint8List hash = bencode.encode(this);
+    Digest digest = sha1.convert(hash);
+    return digest;
+  }
+
   @override
   String toString() {
     return "BencodeInfo(files: $files, name: $name,pieceLength: $pieceLength,pieces: $pieces, private: $private, source: $source)";
