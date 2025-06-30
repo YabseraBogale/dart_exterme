@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
@@ -97,6 +98,18 @@ class TorrentFile {
     final Uri trackerUri = base.replace(queryParameters: params);
     return trackerUri.toString();
   }
+}
+
+/*
+ Peer{
+	  IP   net.IP
+	  Port uint16
+  }
+*/
+
+class Peer {
+  InternetAddressType ip = InternetAddressType.any;
+  Uint16 port = Uint16();
 }
 
 /*
