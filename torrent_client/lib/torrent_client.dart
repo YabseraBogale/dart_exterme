@@ -79,6 +79,19 @@ class TorrentFile {
   String name = "";
 }
 
+/*
+  BencodeTrackerResp {
+	  Interval int    
+	  Peers    string 
+  }
+
+*/
+
+class BencodeTrackerResp {
+  int interval = 0;
+  String peers = "";
+}
+
 BencodeTorrent open(Uint8List byteStream) {
   BencodeTorrent bto = BencodeTorrent();
   var ben = bencode.decode(byteStream);
