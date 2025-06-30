@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:b_encode_decode/b_encode_decode.dart' as bencode;
@@ -77,6 +78,25 @@ class TorrentFile {
   int pieceLength = 0;
   int length = 0;
   String name = "";
+
+  String buildTrackerURL(Uint8List peerId, Uint8 port) {
+    List<String> uploaded = ["0"];
+    List<String> downloaded = ["0"];
+    List<String> compact = ["1"];
+    List<String> left = [length.toString()];
+    final Uri base = Uri.parse(announce);
+    final Map<String, dynamic> params = {
+      "info_hash": infoHash,
+      "peer_id": peerId,
+      "port": port,
+      "uploaded": uploaded,
+      "downloaded": downloaded,
+      "compact": compact,
+      "left": left,
+    };
+    final Uri trackerUri = base.replace(queryParameters: params);
+    return trackerUri.toString();
+  }
 }
 
 /*
