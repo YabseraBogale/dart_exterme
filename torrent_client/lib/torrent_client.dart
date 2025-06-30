@@ -86,9 +86,9 @@ class TorrentFile {
     List<String> left = [length.toString()];
     final Uri base = Uri.parse(announce);
     final Map<String, dynamic> params = {
-      "info_hash": infoHash,
-      "peer_id": peerId,
-      "port": port,
+      "info_hash": String.fromCharCodes(infoHash),
+      "peer_id": String.fromCharCodes(peerId),
+      "port": port.toString(),
       "uploaded": uploaded,
       "downloaded": downloaded,
       "compact": compact,
