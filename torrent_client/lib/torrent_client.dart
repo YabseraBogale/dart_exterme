@@ -80,7 +80,7 @@ class TorrentFile {
   int length = 0;
   String name = "";
 
-  String buildTrackerURL(Uint8List peerId, Uint8 port) {
+  String buildTrackerURL(Uint8List peerId, Uint16 port) {
     List<String> uploaded = ["0"];
     List<String> downloaded = ["0"];
     List<String> compact = ["1"];
