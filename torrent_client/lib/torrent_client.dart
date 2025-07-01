@@ -112,6 +112,11 @@ class Peer {
 
   int port;
   Peer(this.ip, this.port);
+
+  @override
+  String toString() {
+    return "${ip.address}:$port";
+  }
 }
 
 /*
