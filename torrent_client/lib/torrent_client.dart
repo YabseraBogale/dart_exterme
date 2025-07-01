@@ -109,7 +109,9 @@ class TorrentFile {
 
 class Peer {
   InternetAddress ip;
-  Uint16 port = Uint16();
+
+  int port;
+  Peer(this.ip, this.port);
 }
 
 /*
@@ -142,8 +144,7 @@ List<Peer>? unmarshal(Uint8List peerBin) {
       2,
     );
     int port = portBytesView.getInt16(0, Endian.big);
-    var peer = Peer();
-    peer.ip = ip;
+    peers.add(Peer(ip, port));
   }
   return peers;
 }
