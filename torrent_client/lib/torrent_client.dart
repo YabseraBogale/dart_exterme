@@ -108,7 +108,7 @@ class TorrentFile {
 */
 
 class Peer {
-  InternetAddressType ip = InternetAddressType.any;
+  InternetAddress ip;
   Uint16 port = Uint16();
 }
 
@@ -123,6 +123,29 @@ class Peer {
 class BencodeTrackerResp {
   int interval = 0;
   String peers = "";
+}
+
+List<Peer>? unmarshal(Uint8List peerBin) {
+  var peerSize = 6;
+  if (peerBin.length % peerSize == 0) {
+    return null;
+  }
+  List<Peer> peers = [];
+  var numberPeer = peerBin.length ~/ peerSize;
+  for (var i = 0; i < numberPeer; i++) {
+    var offSet = i * peerSize;
+    var ipBytes = peerBin.sublist(offSet, offSet + 4);
+    var ip = InternetAddress.fromRawAddress(ipBytes);
+    var portBytesView = ByteData.view(
+      peerBin.buffer,
+      peerBin.offsetInBytes + offSet + 4,
+      2,
+    );
+    int port = portBytesView.getInt16(0, Endian.big);
+    var peer = Peer();
+    peer.ip = ip;
+  }
+  return peers;
 }
 
 BencodeTorrent open(Uint8List byteStream) {
