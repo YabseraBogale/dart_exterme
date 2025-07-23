@@ -225,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.8.5+1"
+  sembast_sqflite:
+    dependency: "direct main"
+    description:
+      name: sembast_sqflite
+      sha256: "38ffa967af36d6867d087ec82c37b70b55707b2cd533157e8a32d15aa66e40d2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   shelf:
     dependency: transitive
     description:
@@ -281,6 +289,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.1"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      sha256: "84731e8bfd8303a3389903e01fb2141b6e59b5973cacbb0929021df08dddbe8b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.5"
   stack_trace:
     dependency: transitive
     description:
